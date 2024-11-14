@@ -1,4 +1,4 @@
-name: Syscall Project DEV CI
+name: Glabal Sookmyung main CI
 
 on:
   pull_request:
