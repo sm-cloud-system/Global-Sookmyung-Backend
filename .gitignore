@@ -37,3 +37,4 @@ out/
 .vscode/
 
 ### setting file ###
+**/resources/*.properties
