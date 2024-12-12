@@ -4,6 +4,8 @@ import java.time.*;
 
 import jakarta.persistence.*;
 
+import com.sookmyung.global.common.enums.*;
+
 import lombok.*;
 
 @Entity
@@ -18,6 +20,9 @@ public class Member {
 
   @Column(nullable = false)
   private String password;
+
+  @Column(nullable = false)
+  Role role;
 
   @Column(nullable = false)
   private String firstName;
