@@ -19,7 +19,7 @@ import lombok.*;
 @RequiredArgsConstructor
 public class JwtTokenValidatorImpl implements JwtTokenValidator {
 
-  @Value("${jwt.secretKey}")
+  @Value("${jwt.secret-key}")
   private String secretKey;
 
   private JWTVerifier getVerifier() {

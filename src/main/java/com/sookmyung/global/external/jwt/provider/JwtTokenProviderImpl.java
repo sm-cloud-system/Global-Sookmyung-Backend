@@ -14,7 +14,7 @@ public class JwtTokenProviderImpl implements JwtTokenProvider {
   @Value("${jwt.secret-key}")
   private String secretKey;
 
-  @Value("$jwt.access.guest-expiration")
+  @Value("${jwt.access.guest-expiration}")
   private Long accessTokenExpirationPeriodForGuest;
 
   @Value("${jwt.access.expiration}")
