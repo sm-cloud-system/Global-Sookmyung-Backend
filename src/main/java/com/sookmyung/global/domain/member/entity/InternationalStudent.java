@@ -3,8 +3,13 @@ package com.sookmyung.global.domain.member.entity;
 import jakarta.persistence.*;
 
 import com.sookmyung.global.domain.nation.entity.*;
+import com.sookmyung.global.domain.university.entity.*;
 
-public class Foreign {
+import lombok.*;
+
+@Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class InternationalStudent {
   @Id private Long id;
 
   @OneToOne(fetch = FetchType.LAZY)
@@ -13,6 +18,10 @@ public class Foreign {
   private Member member;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "nation_id", nullable = false)
+  private Nation nationality;
+
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "university_id", nullable = false)
-  University homeUniversity;
+  private University homeUniversity;
 }

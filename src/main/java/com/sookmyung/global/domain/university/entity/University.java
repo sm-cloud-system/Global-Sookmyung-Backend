@@ -1,4 +1,4 @@
-package com.sookmyung.global.domain.nation.entity;
+package com.sookmyung.global.domain.university.entity;
 
 import jakarta.persistence.*;
 
@@ -16,8 +16,4 @@ public class University {
 
   @Column(nullable = false)
   private String name;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "nation_id")
-  private Nation nation;
 }
