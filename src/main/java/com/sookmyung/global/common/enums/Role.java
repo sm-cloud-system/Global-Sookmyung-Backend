@@ -6,7 +6,7 @@ public enum Role {
    * @note: SOOKMYUNG_STUDENT 숙명여자대학교 재학생
    * @note: INTERNATIONAL_STUDENT 유학생
    */
-  ADMIN,
+  GUEST,
   SOOKMYUNG_STUDENT,
   INTERNATIONAL_STUDENT
 }
