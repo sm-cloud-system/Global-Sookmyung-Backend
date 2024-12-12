@@ -31,7 +31,7 @@ spring:
       path: /h2-console
 
 jwt:
-  secretKey: ${JWT_SECRET_KEY}
+  secret-key: ${JWT_SECRET_KEY}
   access:
     expiration: ${JWT_ACCESS_TOKEN_EXPIRE_TIME}
     header: ${JWT_ACCESS_TOKEN_HEADER}
