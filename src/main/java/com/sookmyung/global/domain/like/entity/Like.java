@@ -9,7 +9,9 @@ import com.sookmyung.global.domain.post.entity.*;
 import lombok.*;
 
 @Entity
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"member_id", "post_id"})})
+@Table(
+    name = "Likes",
+    uniqueConstraints = {@UniqueConstraint(columnNames = {"member_id", "post_id"})})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Like extends BaseTime {
   @Id
