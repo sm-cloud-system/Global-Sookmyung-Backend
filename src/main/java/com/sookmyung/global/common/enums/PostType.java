@@ -1,4 +1,4 @@
-package com.sookmyung.global.domain.post.entity;
+package com.sookmyung.global.common.enums;
 
 import lombok.*;
 
