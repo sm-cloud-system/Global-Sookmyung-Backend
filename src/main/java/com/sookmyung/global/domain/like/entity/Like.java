@@ -2,6 +2,7 @@ package com.sookmyung.global.domain.like.entity;
 
 import jakarta.persistence.*;
 
+import com.sookmyung.global.common.base.*;
 import com.sookmyung.global.domain.member.entity.*;
 import com.sookmyung.global.domain.post.entity.*;
 
@@ -10,7 +11,7 @@ import lombok.*;
 @Entity
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"member_id", "post_id"})})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Like {
+public class Like extends BaseTime {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
