@@ -6,6 +6,7 @@ import org.springframework.stereotype.*;
 
 import com.sookmyung.global.domain.auth.dto.request.*;
 import com.sookmyung.global.domain.auth.dto.response.*;
+import com.sookmyung.global.external.email.service.*;
 import com.sookmyung.global.external.redis.dto.*;
 import com.sookmyung.global.external.redis.repository.*;
 
@@ -13,15 +14,17 @@ import lombok.*;
 
 @Service
 @RequiredArgsConstructor
-public class AuthServiceImpl implements AuthService {
+public class AuthEmailServiceImpl implements AuthEmailService {
   private static final int CODE_SIZE = 6;
   private static final int BOUND = 10;
   private final RedisEmailCodeRepository redisEmailCodeRepository;
+  private final EmailService emailService;
 
   @Override
   public void createEmailCode(IssueEmailCodeRequest request) {
     EmailCodeDto codeDto = createEmailVerificationCode(request.email());
     redisEmailCodeRepository.save(codeDto);
+    emailService.sendEmailVerificationCode(request.email(), codeDto.getCode());
   }
 
   private EmailCodeDto createEmailVerificationCode(String email) {
