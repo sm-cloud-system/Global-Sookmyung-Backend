@@ -14,7 +14,7 @@ import lombok.*;
 @RequiredArgsConstructor
 public class AuthController implements AuthApi {
   @Override
-  public ResponseEntity createEmailCode(IssueEmailCodeRequest request) {
+  public ResponseEntity<ResponseTemplate> createEmailCode(IssueEmailCodeRequest request) {
     return null;
   }
 
