@@ -13,4 +13,10 @@ public class EmailCodeDto {
   @Id @Indexed private String email;
 
   private String code;
+
+  @Builder
+  private EmailCodeDto(String email, String code) {
+    this.email = email;
+    this.code = code;
+  }
 }
