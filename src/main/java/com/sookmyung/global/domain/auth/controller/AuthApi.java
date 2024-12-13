@@ -7,7 +7,7 @@ import com.sookmyung.global.domain.auth.dto.request.*;
 import com.sookmyung.global.domain.auth.dto.response.*;
 
 public interface AuthApi {
-  ResponseEntity createEmailCode(IssueEmailCodeRequest request);
+  ResponseEntity<ResponseTemplate> createEmailCode(IssueEmailCodeRequest request);
 
   ResponseEntity<ResponseTemplate<IssueTokenForGuestResponse>> validateEmailCode(
       EmailVerificationRequest request);
