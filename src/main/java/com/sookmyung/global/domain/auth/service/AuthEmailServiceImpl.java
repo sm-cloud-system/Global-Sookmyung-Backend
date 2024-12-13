@@ -1,12 +1,16 @@
 package com.sookmyung.global.domain.auth.service;
 
+import static com.sookmyung.global.domain.auth.exception.AuthExceptionCode.INVALID_VERIFICATION_CODE;
+
 import java.util.*;
 
 import org.springframework.stereotype.*;
 
 import com.sookmyung.global.domain.auth.dto.request.*;
 import com.sookmyung.global.domain.auth.dto.response.*;
+import com.sookmyung.global.domain.auth.exception.*;
 import com.sookmyung.global.external.email.service.*;
+import com.sookmyung.global.external.jwt.provider.*;
 import com.sookmyung.global.external.redis.dto.*;
 import com.sookmyung.global.external.redis.repository.*;
 
@@ -19,6 +23,7 @@ public class AuthEmailServiceImpl implements AuthEmailService {
   private static final int BOUND = 10;
   private final RedisEmailCodeRepository redisEmailCodeRepository;
   private final EmailService emailService;
+  private final JwtTokenProvider jwtTokenProvider;
 
   @Override
   public void createEmailCode(IssueEmailCodeRequest request) {
@@ -39,6 +44,13 @@ public class AuthEmailServiceImpl implements AuthEmailService {
 
   @Override
   public IssueTokenForGuestResponse validateEmailCode(EmailVerificationRequest request) {
-    return null;
+    EmailCodeDto foundEmailcodeDto = redisEmailCodeRepository.findByEmailOrThrow(request.email());
+    boolean isVerified = request.email().equals(foundEmailcodeDto.getCode());
+
+    if (isVerified) {
+      String accessTokenForGuest = jwtTokenProvider.createAccessTokenForGuest();
+      return IssueTokenForGuestResponse.of(accessTokenForGuest);
+    }
+    throw new AuthException(INVALID_VERIFICATION_CODE);
   }
 }
