@@ -35,4 +35,22 @@ public class Member {
 
   @Column(nullable = false)
   private String nickname;
+
+  @Builder
+  private Member(
+      String email,
+      String password,
+      Role role,
+      String firstName,
+      String lastName,
+      LocalDate birthDate,
+      String nickname) {
+    this.email = email;
+    this.password = password;
+    this.role = role;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.birthDate = birthDate;
+    this.nickname = nickname;
+  }
 }
