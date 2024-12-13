@@ -20,6 +20,7 @@ import lombok.*;
 public class AuthController implements AuthApi {
   private final AuthEmailService authEmailService;
 
+  @PostMapping("/issue/code")
   @Override
   public ResponseEntity<ResponseTemplate> createEmailCode(
       @RequestBody @Valid IssueEmailCodeRequest request) {
@@ -27,6 +28,7 @@ public class AuthController implements AuthApi {
     return ResponseUtil.success(AuthSuccessCode.SUCCESS_CREATE_AND_SEND_EMAIL_CODE);
   }
 
+  @RequestMapping("/verify/email")
   @Override
   public ResponseEntity<ResponseTemplate<?>> validateEmailCode(
       @RequestBody @Valid EmailVerificationRequest request) {
