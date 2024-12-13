@@ -51,8 +51,8 @@ public class AuthEmailServiceImpl implements AuthEmailService {
   public IssueTokenForGuestResponse validateEmailCode(EmailVerificationRequest request) {
     validateEmail(request.email());
     EmailCodeDto foundEmailcodeDto = redisEmailCodeRepository.findByEmailOrThrow(request.email());
-    boolean isVerified = request.email().equals(foundEmailcodeDto.getCode());
-
+    String storedCode = foundEmailcodeDto.getCode();
+    boolean isVerified = storedCode.equals(request.code());
     if (isVerified) {
       String accessTokenForGuest = jwtTokenProvider.createAccessTokenForGuest();
       return IssueTokenForGuestResponse.of(accessTokenForGuest);
