@@ -8,5 +8,10 @@ public enum Role {
    */
   GUEST,
   SOOKMYUNG_STUDENT,
-  INTERNATIONAL_STUDENT
+  INTERNATIONAL_STUDENT;
+
+  public static Role checkStudentRole(boolean isInternational) {
+    if (isInternational) return Role.INTERNATIONAL_STUDENT;
+    return Role.SOOKMYUNG_STUDENT;
+  }
 }
