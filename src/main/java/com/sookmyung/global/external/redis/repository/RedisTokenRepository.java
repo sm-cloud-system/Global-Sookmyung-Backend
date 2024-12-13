@@ -11,10 +11,10 @@ import com.sookmyung.global.domain.auth.exception.*;
 import com.sookmyung.global.external.redis.dto.*;
 
 @Repository
-public interface RedisTokenRepository extends CrudRepository<RefreshTokenDTO, String> {
-  Optional<RefreshTokenDTO> findByMemberId(final String memberId);
+public interface RedisTokenRepository extends CrudRepository<RefreshTokenDto, String> {
+  Optional<RefreshTokenDto> findByMemberId(final String memberId);
 
-  default RefreshTokenDTO findByMemberIdOrElseThrowException(final String memberId) {
+  default RefreshTokenDto findByMemberIdOrElseThrowException(final String memberId) {
     return findByMemberId(memberId).orElseThrow(() -> new AuthException(UNAUTHORIZED_TOKEN));
   }
 }

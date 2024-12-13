@@ -9,10 +9,10 @@ import org.springframework.data.repository.*;
 import com.sookmyung.global.domain.auth.exception.*;
 import com.sookmyung.global.external.redis.dto.*;
 
-public interface RedisEmailCodeRepository extends CrudRepository<EmailCodeDTO, String> {
-  Optional<EmailCodeDTO> findByEmail(final String email);
+public interface RedisEmailCodeRepository extends CrudRepository<EmailCodeDto, String> {
+  Optional<EmailCodeDto> findByEmail(final String email);
 
-  default EmailCodeDTO findByEmailOrThrow(final String email) {
+  default EmailCodeDto findByEmailOrThrow(final String email) {
     return findByEmail(email).orElseThrow(() -> new AuthException(NOT_FOUND_EMAIL));
   }
 }
