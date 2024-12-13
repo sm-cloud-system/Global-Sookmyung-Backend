@@ -1,4 +1,4 @@
-package com.sookmyung.global.domain.auth.exception;
+package com.sookmyung.global.domain.auth.code;
 
 import org.springframework.http.*;
 
