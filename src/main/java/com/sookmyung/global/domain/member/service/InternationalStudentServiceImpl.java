@@ -21,11 +21,15 @@ public class InternationalStudentServiceImpl implements InternationalStudentServ
 
   @Transactional
   @Override
-  public void createInternationalStudent(String nationality, String homeUniversity) {
+  public void createInternationalStudent(Member member, String nationality, String homeUniversity) {
     Nation nation = nationRepository.findByNameOrThrow(nationality);
     University university = universityRepository.findByNameOrThrow(homeUniversity);
     InternationalStudent internationalStudent =
-        InternationalStudent.builder().nationality(nation).homeUniversity(university).build();
+        InternationalStudent.builder()
+            .member(member)
+            .nationality(nation)
+            .homeUniversity(university)
+            .build();
     internationalStudentRepository.save(internationalStudent);
   }
 }
