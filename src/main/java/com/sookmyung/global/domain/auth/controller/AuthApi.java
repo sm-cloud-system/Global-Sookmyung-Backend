@@ -1,14 +1,14 @@
 package com.sookmyung.global.domain.auth.controller;
 
+import jakarta.validation.*;
+
 import org.springframework.http.*;
 
 import com.sookmyung.global.common.response.*;
 import com.sookmyung.global.domain.auth.dto.request.*;
-import com.sookmyung.global.domain.auth.dto.response.*;
 
 public interface AuthApi {
-  ResponseEntity<ResponseTemplate> createEmailCode(IssueEmailCodeRequest request);
+  ResponseEntity<ResponseTemplate> createEmailCode(@Valid IssueEmailCodeRequest request);
 
-  ResponseEntity<ResponseTemplate<IssueTokenForGuestResponse>> validateEmailCode(
-      EmailVerificationRequest request);
+  ResponseEntity<ResponseTemplate<?>> validateEmailCode(@Valid EmailVerificationRequest request);
 }

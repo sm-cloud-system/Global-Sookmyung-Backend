@@ -33,7 +33,7 @@ public final class ResponseUtil {
     return ResponseEntity.status(code.status()).body(ResponseTemplate.success(code, data));
   }
 
-  public static ResponseEntity success(SuccessCode code) {
+  public static ResponseEntity<ResponseTemplate> success(SuccessCode code) {
     return ResponseEntity.status(code.status()).body(ResponseTemplate.success(code));
   }
 
