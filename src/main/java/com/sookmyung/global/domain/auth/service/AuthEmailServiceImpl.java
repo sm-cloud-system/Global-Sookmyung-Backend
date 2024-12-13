@@ -1,11 +1,12 @@
 package com.sookmyung.global.domain.auth.service;
 
-import static com.sookmyung.global.domain.auth.exception.AuthExceptionCode.INVALID_VERIFICATION_CODE;
+import static com.sookmyung.global.domain.auth.code.AuthExceptionCode.INVALID_VERIFICATION_CODE;
 
 import java.util.*;
 
 import org.springframework.stereotype.*;
 
+import com.sookmyung.global.domain.auth.code.*;
 import com.sookmyung.global.domain.auth.dto.request.*;
 import com.sookmyung.global.domain.auth.dto.response.*;
 import com.sookmyung.global.domain.auth.exception.*;

@@ -1,8 +1,8 @@
 package com.sookmyung.global.external.jwt.service;
 
-import static com.sookmyung.global.domain.auth.exception.AuthExceptionCode.INVALID_REQUEST_LOGIN;
-import static com.sookmyung.global.domain.auth.exception.AuthExceptionCode.INVALID_TOKEN;
-import static com.sookmyung.global.domain.auth.exception.AuthExceptionCode.INVALID_TOKEN_HEADER;
+import static com.sookmyung.global.domain.auth.code.AuthExceptionCode.INVALID_REQUEST_LOGIN;
+import static com.sookmyung.global.domain.auth.code.AuthExceptionCode.INVALID_TOKEN;
+import static com.sookmyung.global.domain.auth.code.AuthExceptionCode.INVALID_TOKEN_HEADER;
 
 import java.util.*;
 
@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.*;
 
 import com.sookmyung.global.common.enums.*;
+import com.sookmyung.global.domain.auth.code.*;
 import com.sookmyung.global.domain.auth.dto.request.*;
 import com.sookmyung.global.domain.auth.dto.response.*;
 import com.sookmyung.global.domain.auth.exception.*;
