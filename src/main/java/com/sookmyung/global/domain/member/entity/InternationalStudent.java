@@ -24,4 +24,11 @@ public class InternationalStudent {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "university_id", nullable = false)
   private University homeUniversity;
+
+  @Builder
+  private InternationalStudent(Member member, Nation nationality, University homeUniversity) {
+    this.member = member;
+    this.nationality = nationality;
+    this.homeUniversity = homeUniversity;
+  }
 }
