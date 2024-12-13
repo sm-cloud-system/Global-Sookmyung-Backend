@@ -69,7 +69,7 @@ public class JwtServiceImpl implements JwtService {
     jwtTokenValidator.validateToken(refreshToken);
 
     String memberId = getMemberIdFromAccessToken(accessToken);
-    RefreshTokenDTO foundRefreshToken = getRefreshTokenForMemberId(memberId);
+    RefreshTokenDto foundRefreshToken = getRefreshTokenForMemberId(memberId);
 
     validateRefreshTokenMatch(refreshToken, foundRefreshToken);
 
@@ -88,12 +88,12 @@ public class JwtServiceImpl implements JwtService {
     return jwtTokenValidator.getClaim(accessToken, ID_CLAIM).asString();
   }
 
-  private RefreshTokenDTO getRefreshTokenForMemberId(final String memberId) {
+  private RefreshTokenDto getRefreshTokenForMemberId(final String memberId) {
     return redisTokenRepository.findByMemberIdOrElseThrowException(memberId);
   }
 
   private void validateRefreshTokenMatch(
-      final String refreshToken, final RefreshTokenDTO foundRefreshToken) {
+      final String refreshToken, final RefreshTokenDto foundRefreshToken) {
     if (!refreshToken.equals(foundRefreshToken.getRefreshToken())) {
       throw new AuthException(INVALID_TOKEN);
     }
@@ -105,7 +105,7 @@ public class JwtServiceImpl implements JwtService {
   }
 
   private void updateRefreshToken(final String memberId, final String newRefreshToken) {
-    RefreshTokenDTO refreshTokenDTO = redisTokenRepository.findByMemberId(memberId).orElse(null);
+    RefreshTokenDto refreshTokenDTO = redisTokenRepository.findByMemberId(memberId).orElse(null);
 
     if (refreshTokenDTO != null) {
       refreshTokenDTO.updateRefreshToken(newRefreshToken);
@@ -114,7 +114,7 @@ public class JwtServiceImpl implements JwtService {
     }
 
     redisTokenRepository.save(
-        RefreshTokenDTO.builder()
+        RefreshTokenDto.builder()
             .memberId(String.valueOf(memberId))
             .refreshToken(newRefreshToken)
             .build());

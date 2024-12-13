@@ -9,7 +9,7 @@ import lombok.*;
 @Getter
 @NoArgsConstructor
 @RedisHash(value = "refresh", timeToLive = 604800016)
-public class RefreshTokenDTO {
+public class RefreshTokenDto {
   @Id @Indexed private String memberId;
 
   private String refreshToken;
@@ -19,7 +19,7 @@ public class RefreshTokenDTO {
   }
 
   @Builder
-  private RefreshTokenDTO(final String memberId, final String refreshToken) {
+  private RefreshTokenDto(final String memberId, final String refreshToken) {
     this.memberId = memberId;
     this.refreshToken = refreshToken;
   }

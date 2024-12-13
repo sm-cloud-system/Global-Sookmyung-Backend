@@ -9,7 +9,7 @@ import lombok.*;
 @Getter
 @NoArgsConstructor
 @RedisHash(value = "refresh", timeToLive = 600)
-public class EmailCodeDTO {
+public class EmailCodeDto {
   @Id @Indexed private String email;
 
   private String code;
