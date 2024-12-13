@@ -35,4 +35,9 @@ public class AuthController implements AuthApi {
     IssueTokenForGuestResponse response = authEmailService.validateEmailCode(request);
     return ResponseUtil.success(AuthSuccessCode.SUCCESS_VALIDATE_EMAIL_CODE, response);
   }
+
+  @Override
+  public ResponseEntity<ResponseTemplate> signUp(SignUpRequest request) {
+    return null;
+  }
 }

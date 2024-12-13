@@ -11,4 +11,6 @@ public interface AuthApi {
   ResponseEntity<ResponseTemplate> createEmailCode(@Valid IssueEmailCodeRequest request);
 
   ResponseEntity<ResponseTemplate<?>> validateEmailCode(@Valid EmailVerificationRequest request);
+
+  ResponseEntity<ResponseTemplate> signUp(@Valid SignUpRequest request);
 }
