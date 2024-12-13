@@ -1,4 +1,4 @@
-package com.sookmyung.global.external.email.config;
+package com.sookmyung.global.common.config;
 
 import java.util.*;
 
