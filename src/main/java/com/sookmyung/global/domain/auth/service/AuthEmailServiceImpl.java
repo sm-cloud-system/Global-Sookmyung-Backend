@@ -61,8 +61,8 @@ public class AuthEmailServiceImpl implements AuthEmailService {
   }
 
   private void validateEmail(String email) {
-    boolean isNotSookMyungEmail = !EMAIL_PATTERN.matcher(email).matches();
-    if (isNotSookMyungEmail) {
+    boolean isNotValidEmail = !EMAIL_PATTERN.matcher(email).matches();
+    if (isNotValidEmail) {
       throw new AuthException(INVALID_EMAIL_DOMAIN);
     }
   }
