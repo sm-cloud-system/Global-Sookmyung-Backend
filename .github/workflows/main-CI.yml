@@ -24,8 +24,10 @@ jobs:
           echo "${{ secrets.TEST_ENV }}" > .env
 
       - name: Export environment variables from .env
-        run: | 
-          export $(cat ./src/main/resources/.env | xargs)
+        run: |
+          set -a 
+          source ./src/main/resources/.env 
+          set +a
 
       - name: build
         run: |
