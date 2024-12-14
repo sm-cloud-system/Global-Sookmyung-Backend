@@ -10,6 +10,7 @@ import lombok.*;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class Member {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
