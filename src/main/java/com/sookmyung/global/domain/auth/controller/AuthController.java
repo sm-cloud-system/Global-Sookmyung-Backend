@@ -1,6 +1,7 @@
 package com.sookmyung.global.domain.auth.controller;
 
 import static com.sookmyung.global.common.code.success.AuthSuccessCode.SUCCESS_CREATE_AND_SEND_EMAIL_CODE;
+import static com.sookmyung.global.common.code.success.AuthSuccessCode.SUCCESS_LOGIN_IN;
 import static com.sookmyung.global.common.code.success.AuthSuccessCode.SUCCESS_SIGN_UP;
 import static com.sookmyung.global.common.code.success.AuthSuccessCode.SUCCESS_VALIDATE_EMAIL_CODE;
 
@@ -45,5 +46,12 @@ public class AuthController implements AuthApi {
   public ResponseEntity<ResponseTemplate> signUp(@RequestBody @Valid SignUpRequest request) {
     authMemberService.SignUp(request);
     return ResponseUtil.success(SUCCESS_SIGN_UP);
+  }
+
+  @PostMapping("/login")
+  @Override
+  public ResponseEntity<ResponseTemplate<?>> login(@RequestBody @Valid AuthRequest request) {
+    IssueTokenResponse response = authMemberService.login(request);
+    return ResponseUtil.success(SUCCESS_LOGIN_IN, response);
   }
 }
