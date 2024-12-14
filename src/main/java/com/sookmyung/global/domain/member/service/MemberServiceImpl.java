@@ -35,4 +35,9 @@ public class MemberServiceImpl implements MemberService {
     memberRepository.save(newMember);
     return newMember;
   }
+
+  public Member findMember(AuthRequest request) {
+    String encodedPassword = passwordEncoder.encode(request.password());
+    return memberRepository.findByEmailAndPasswordOrThrow(request.email(), encodedPassword);
+  }
 }
