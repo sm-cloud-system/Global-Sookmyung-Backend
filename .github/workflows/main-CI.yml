@@ -20,9 +20,9 @@ jobs:
 
       - name: create application-secret.properties
         run: |
-          cd ./src/main/resources
-          touch ./application-secret.properties
-          echo "${{ secrets.SECRET_PROPERTIES }}" > ./application-secret.properties
+          cd ./src/main/resources 
+          touch .env 
+          echo "${{ secrets.TEST_ENV }}" > .env
 
       - name: build
         run: |

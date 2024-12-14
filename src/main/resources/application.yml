@@ -1,15 +1,18 @@
 spring:
   config:
-    import: application-secret.properties
+    activate:
+      on-profile: ${SPRING_PROFILES_ACTIVE}
   web:
     resources:
       add-mappings: false
+    origin:
+      client: ${WEB_ORIGIN}
 
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: ${DEV_DB_URL}
-    username: ${DEV_DB_USERNAME}
-    password: ${DEV_DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: none
@@ -21,8 +24,8 @@ spring:
     open-in-view: false
   data:
     redis:
-      host: ${DEV_REDIS_HOST}
-      port: ${DEV_REDIS_PORT}
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
   mail:
     host: ${SMTP_HOST}
     port: ${SMTP_PORT}
