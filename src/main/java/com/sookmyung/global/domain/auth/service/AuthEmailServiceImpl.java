@@ -1,16 +1,16 @@
 package com.sookmyung.global.domain.auth.service;
 
-import static com.sookmyung.global.domain.auth.code.AuthExceptionCode.INVALID_EMAIL_DOMAIN;
-import static com.sookmyung.global.domain.auth.code.AuthExceptionCode.INVALID_VERIFICATION_CODE;
+import static com.sookmyung.global.common.code.fail.AuthExceptionCode.INVALID_EMAIL_DOMAIN;
+import static com.sookmyung.global.common.code.fail.AuthExceptionCode.INVALID_VERIFICATION_CODE;
 
 import java.util.*;
 import java.util.regex.*;
 
 import org.springframework.stereotype.*;
 
+import com.sookmyung.global.common.exception.*;
 import com.sookmyung.global.domain.auth.dto.request.*;
 import com.sookmyung.global.domain.auth.dto.response.*;
-import com.sookmyung.global.domain.auth.exception.*;
 import com.sookmyung.global.external.email.service.*;
 import com.sookmyung.global.external.jwt.provider.*;
 import com.sookmyung.global.external.redis.dto.*;

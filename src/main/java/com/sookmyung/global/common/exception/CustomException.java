@@ -1,6 +1,6 @@
 package com.sookmyung.global.common.exception;
 
-import com.sookmyung.global.common.code.*;
+import com.sookmyung.global.common.code.fail.*;
 
 import lombok.*;
 

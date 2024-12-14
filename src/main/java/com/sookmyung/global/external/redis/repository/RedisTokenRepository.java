@@ -1,14 +1,13 @@
 package com.sookmyung.global.external.redis.repository;
 
-import static com.sookmyung.global.domain.auth.code.AuthExceptionCode.UNAUTHORIZED_TOKEN;
+import static com.sookmyung.global.common.code.fail.AuthExceptionCode.UNAUTHORIZED_TOKEN;
 
 import java.util.*;
 
 import org.springframework.data.repository.*;
 import org.springframework.stereotype.Repository;
 
-import com.sookmyung.global.domain.auth.code.*;
-import com.sookmyung.global.domain.auth.exception.*;
+import com.sookmyung.global.common.exception.*;
 import com.sookmyung.global.external.redis.dto.*;
 
 @Repository
