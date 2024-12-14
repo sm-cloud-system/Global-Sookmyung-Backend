@@ -18,11 +18,14 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: create application-secret.properties
-        run: |
-          cd ./src/main/resources 
-          touch .env 
+      - name: Create .env file
+        run: | 
+          cd ./src/main/resources
           echo "${{ secrets.TEST_ENV }}" > .env
+
+      - name: Export environment variables from .env
+        run: | 
+          export $(cat ./src/main/resources/.env | xargs)
 
       - name: build
         run: |
