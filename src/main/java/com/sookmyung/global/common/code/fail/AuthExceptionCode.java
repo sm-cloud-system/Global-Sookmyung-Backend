@@ -13,6 +13,7 @@ public enum AuthExceptionCode implements ExceptionCode {
   INVALID_REQUEST_LOGIN(HttpStatus.BAD_REQUEST, "올바르지 않은 로그인 요청입니다"),
   INVALID_VERIFICATION_CODE(HttpStatus.BAD_REQUEST, "인증번호가 유효하지 않습니다"),
   INVALID_EMAIL_DOMAIN(HttpStatus.BAD_REQUEST, "숙명여자대학교 이메일이 아닙니다"),
+  INVALID_AUTH_REQUEST(HttpStatus.BAD_REQUEST, "올바르지 않은 로그인 요청입니다"),
   NOT_FOUND_EMAIL(HttpStatus.NOT_FOUND, "인증을 진행한 이메일을 찾을 수 없습니다");
 
   private final HttpStatus status;
