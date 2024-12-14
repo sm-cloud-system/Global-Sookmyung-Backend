@@ -15,4 +15,6 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
   default Member findByEmailOrThrow(String email) {
     return findByEmail(email).orElseThrow(() -> new AuthException(INVALID_AUTH_REQUEST));
   }
+
+  Optional<Member> findByNickname(String nickname);
 }
