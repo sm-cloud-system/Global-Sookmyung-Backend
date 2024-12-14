@@ -2,6 +2,8 @@ package com.sookmyung.global.domain.member.service;
 
 import static com.sookmyung.global.common.code.fail.AuthExceptionCode.INVALID_AUTH_REQUEST;
 
+import java.util.*;
+
 import javax.naming.*;
 
 import org.springframework.security.crypto.password.*;
@@ -11,6 +13,7 @@ import org.springframework.transaction.annotation.*;
 import com.sookmyung.global.common.enums.*;
 import com.sookmyung.global.common.exception.*;
 import com.sookmyung.global.domain.auth.dto.request.*;
+import com.sookmyung.global.domain.member.dto.response.*;
 import com.sookmyung.global.domain.member.entity.*;
 import com.sookmyung.global.domain.member.repository.*;
 
@@ -50,5 +53,14 @@ public class MemberServiceImpl implements MemberService {
       throw new AuthException(INVALID_AUTH_REQUEST);
     }
     return member;
+  }
+
+  public ValidateNicknameResponse validateNickname(final String nickname) {
+    Optional<Member> member = memberRepository.findByNickname(nickname);
+
+    if (member.isPresent()) {
+      return ValidateNicknameResponse.of(false);
+    }
+    return ValidateNicknameResponse.of(true);
   }
 }
