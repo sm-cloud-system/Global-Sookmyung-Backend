@@ -1,0 +1,24 @@
+spring.config.activate.on-profile:
+  - dev
+  - local
+jwt:
+  secret-key: ${JWT_SECRET_KEY}
+  access:
+    guest-expiration: ${JWT_ACCESS_TOKEN_EXPIRE_TIME_FOR_GUEST}
+    expiration: ${JWT_ACCESS_TOKEN_EXPIRE_TIME}
+    header: ${JWT_ACCESS_TOKEN_HEADER}
+  refresh:
+    expiration: ${JWT_REFRESH_TOKEN_EXPIRE_TIME}
+    header: ${JWT_REFRESH_TOKEN_HEADER}
+
+---
+spring.config.activate.on-profile: test
+jwt:
+  secret-key: thisistestsecretkeythisistestsecretkeythisistestsecretkey
+  access:
+    guest-expiration: 600
+    expiration: 72000
+    header: test-authorization
+  refresh:
+    expiration: 1000
+    header: test-refresh
