@@ -5,4 +5,6 @@ import com.sookmyung.global.domain.member.entity.*;
 
 public interface MemberService {
   Member createMember(SignUpRequest request);
+
+  Member findMember(AuthRequest request);
 }
