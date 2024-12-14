@@ -10,10 +10,9 @@ import com.sookmyung.global.common.exception.*;
 import com.sookmyung.global.domain.member.entity.*;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
-  Optional<Member> findByEmailAndPassword(String email, String password);
+  Optional<Member> findByEmail(String email);
 
-  default Member findByEmailAndPasswordOrThrow(String email, String password) {
-    return findByEmailAndPassword(email, password)
-        .orElseThrow(() -> new AuthException(INVALID_AUTH_REQUEST));
+  default Member findByEmailOrThrow(String email) {
+    return findByEmail(email).orElseThrow(() -> new AuthException(INVALID_AUTH_REQUEST));
   }
 }

@@ -1,10 +1,15 @@
 package com.sookmyung.global.domain.member.service;
 
+import static com.sookmyung.global.common.code.fail.AuthExceptionCode.INVALID_AUTH_REQUEST;
+
+import javax.naming.*;
+
 import org.springframework.security.crypto.password.*;
 import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.*;
 
 import com.sookmyung.global.common.enums.*;
+import com.sookmyung.global.common.exception.*;
 import com.sookmyung.global.domain.auth.dto.request.*;
 import com.sookmyung.global.domain.member.entity.*;
 import com.sookmyung.global.domain.member.repository.*;
@@ -37,7 +42,13 @@ public class MemberServiceImpl implements MemberService {
   }
 
   public Member findMember(AuthRequest request) {
-    String encodedPassword = passwordEncoder.encode(request.password());
-    return memberRepository.findByEmailAndPasswordOrThrow(request.email(), encodedPassword);
+    Member member = memberRepository.findByEmailOrThrow(request.email());
+    boolean isNotEqualsPassword =
+        !passwordEncoder.matches(request.password(), member.getPassword());
+
+    if (isNotEqualsPassword) {
+      throw new AuthException(INVALID_AUTH_REQUEST);
+    }
+    return member;
   }
 }
