@@ -2,6 +2,7 @@ spring:
   config:
     activate:
       on-profile: ${SPRING_PROFILES_ACTIVE}
+    import: optional:file:.env
   web:
     resources:
       add-mappings: false
