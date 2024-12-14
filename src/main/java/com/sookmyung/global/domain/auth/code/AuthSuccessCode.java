@@ -10,7 +10,7 @@ import lombok.*;
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public enum AuthSuccessCode implements SuccessCode {
   SUCCESS_CREATE_AND_SEND_EMAIL_CODE(HttpStatus.OK, "이메일 인증코드 생성 및 전송에 성공했습니다"),
-  SUCCESS_VALIDATE_EMAIL_CODE(HttpStatus.OK, "이메일 인증에 성공했습니다"),
+  SUCCESS_VALIDATE_EMAIL_CODE(HttpStatus.OK, "인증이 완료되었습니다"),
   SUCCESS_SIGN_UP(HttpStatus.OK, "회원가입에 성공했습니다");
 
   private final HttpStatus status;
