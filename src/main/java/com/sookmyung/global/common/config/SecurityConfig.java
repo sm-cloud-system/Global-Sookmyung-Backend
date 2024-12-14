@@ -22,7 +22,12 @@ import lombok.RequiredArgsConstructor;
 public class SecurityConfig {
 
   public static final String[] AUTH_WHITELIST = {
-    "/", "/error", "/favicon.ico", "/auth/issue/code", "/auth/verify/email"
+    "/",
+    "/error",
+    "/favicon.ico",
+    "/auth/issue/code",
+    "/auth/verify/email",
+    "/member/validate-nickname"
   };
 
   public static final String[] AUTH_WHITELIST_WILDCARD = {
