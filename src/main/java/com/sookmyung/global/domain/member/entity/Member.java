@@ -33,7 +33,7 @@ public class Member {
   @Column(nullable = false)
   private LocalDate birthDate;
 
-  @Column(nullable = false)
+  @Column(nullable = false, unique = true)
   private String nickname;
 
   @Builder
