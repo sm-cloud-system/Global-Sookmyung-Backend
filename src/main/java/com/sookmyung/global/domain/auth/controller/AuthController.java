@@ -1,6 +1,7 @@
 package com.sookmyung.global.domain.auth.controller;
 
 import static com.sookmyung.global.domain.auth.code.AuthSuccessCode.SUCCESS_CREATE_AND_SEND_EMAIL_CODE;
+import static com.sookmyung.global.domain.auth.code.AuthSuccessCode.SUCCESS_SIGN_UP;
 import static com.sookmyung.global.domain.auth.code.AuthSuccessCode.SUCCESS_VALIDATE_EMAIL_CODE;
 
 import jakarta.validation.*;
@@ -21,6 +22,7 @@ import lombok.*;
 @RequiredArgsConstructor
 public class AuthController implements AuthApi {
   private final AuthEmailService authEmailService;
+  private final AuthMemberService authMemberService;
 
   @PostMapping("/issue/code")
   @Override
@@ -30,7 +32,7 @@ public class AuthController implements AuthApi {
     return ResponseUtil.success(SUCCESS_CREATE_AND_SEND_EMAIL_CODE);
   }
 
-  @RequestMapping("/verify/email")
+  @PostMapping("/verify/email")
   @Override
   public ResponseEntity<ResponseTemplate<?>> validateEmailCode(
       @RequestBody @Valid EmailVerificationRequest request) {
@@ -38,8 +40,10 @@ public class AuthController implements AuthApi {
     return ResponseUtil.success(SUCCESS_VALIDATE_EMAIL_CODE, response);
   }
 
+  @PostMapping("/sign-up")
   @Override
   public ResponseEntity<ResponseTemplate> signUp(SignUpRequest request) {
-    return null;
+    authMemberService.SignUp(request);
+    return ResponseUtil.success(SUCCESS_SIGN_UP);
   }
 }
