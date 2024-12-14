@@ -38,3 +38,4 @@ out/
 
 ### setting file ###
 **/resources/*.properties
+**/src/main/resources/**/*.env
