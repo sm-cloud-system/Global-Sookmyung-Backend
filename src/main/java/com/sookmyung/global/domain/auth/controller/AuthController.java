@@ -42,7 +42,7 @@ public class AuthController implements AuthApi {
 
   @PostMapping("/sign-up")
   @Override
-  public ResponseEntity<ResponseTemplate> signUp(SignUpRequest request) {
+  public ResponseEntity<ResponseTemplate> signUp(@RequestBody @Valid SignUpRequest request) {
     authMemberService.SignUp(request);
     return ResponseUtil.success(SUCCESS_SIGN_UP);
   }
