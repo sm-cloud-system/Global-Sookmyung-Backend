@@ -2,6 +2,8 @@ package com.sookmyung.global.common.code;
 
 import org.springframework.http.*;
 
+import com.sookmyung.global.common.code.fail.*;
+
 import lombok.*;
 
 @Getter

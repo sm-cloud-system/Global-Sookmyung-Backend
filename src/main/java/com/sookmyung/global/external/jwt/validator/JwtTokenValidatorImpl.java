@@ -1,7 +1,7 @@
 package com.sookmyung.global.external.jwt.validator;
 
-import static com.sookmyung.global.domain.auth.code.AuthExceptionCode.INVALID_TOKEN;
-import static com.sookmyung.global.domain.auth.code.AuthExceptionCode.UNAUTHORIZED_TOKEN;
+import static com.sookmyung.global.common.code.fail.AuthExceptionCode.INVALID_TOKEN;
+import static com.sookmyung.global.common.code.fail.AuthExceptionCode.UNAUTHORIZED_TOKEN;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.*;
@@ -11,8 +11,7 @@ import com.auth0.jwt.algorithms.*;
 import com.auth0.jwt.exceptions.*;
 import com.auth0.jwt.interfaces.*;
 import com.auth0.jwt.interfaces.JWTVerifier;
-import com.sookmyung.global.domain.auth.code.*;
-import com.sookmyung.global.domain.auth.exception.*;
+import com.sookmyung.global.common.exception.*;
 
 import lombok.*;
 

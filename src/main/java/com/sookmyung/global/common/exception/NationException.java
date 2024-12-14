@@ -1,7 +1,6 @@
-package com.sookmyung.global.domain.nation.exception;
+package com.sookmyung.global.common.exception;
 
-import com.sookmyung.global.common.code.*;
-import com.sookmyung.global.common.exception.*;
+import com.sookmyung.global.common.code.fail.*;
 
 public class NationException extends CustomException {
   public NationException(ExceptionCode exceptionCode) {

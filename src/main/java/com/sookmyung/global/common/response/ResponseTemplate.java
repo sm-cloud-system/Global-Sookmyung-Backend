@@ -1,6 +1,7 @@
 package com.sookmyung.global.common.response;
 
-import com.sookmyung.global.common.code.*;
+import com.sookmyung.global.common.code.fail.*;
+import com.sookmyung.global.common.code.success.*;
 
 import lombok.*;
 

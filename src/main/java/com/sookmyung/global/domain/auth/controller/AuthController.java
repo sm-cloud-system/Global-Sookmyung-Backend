@@ -1,8 +1,8 @@
 package com.sookmyung.global.domain.auth.controller;
 
-import static com.sookmyung.global.domain.auth.code.AuthSuccessCode.SUCCESS_CREATE_AND_SEND_EMAIL_CODE;
-import static com.sookmyung.global.domain.auth.code.AuthSuccessCode.SUCCESS_SIGN_UP;
-import static com.sookmyung.global.domain.auth.code.AuthSuccessCode.SUCCESS_VALIDATE_EMAIL_CODE;
+import static com.sookmyung.global.common.code.success.AuthSuccessCode.SUCCESS_CREATE_AND_SEND_EMAIL_CODE;
+import static com.sookmyung.global.common.code.success.AuthSuccessCode.SUCCESS_SIGN_UP;
+import static com.sookmyung.global.common.code.success.AuthSuccessCode.SUCCESS_VALIDATE_EMAIL_CODE;
 
 import jakarta.validation.*;
 

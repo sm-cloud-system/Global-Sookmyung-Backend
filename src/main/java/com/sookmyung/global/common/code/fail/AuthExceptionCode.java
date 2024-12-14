@@ -1,8 +1,6 @@
-package com.sookmyung.global.domain.auth.code;
+package com.sookmyung.global.common.code.fail;
 
 import org.springframework.http.*;
-
-import com.sookmyung.global.common.code.*;
 
 import lombok.*;
 

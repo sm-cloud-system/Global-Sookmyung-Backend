@@ -7,7 +7,8 @@ import jakarta.servlet.http.*;
 import org.springframework.http.*;
 
 import com.fasterxml.jackson.databind.*;
-import com.sookmyung.global.common.code.*;
+import com.sookmyung.global.common.code.fail.*;
+import com.sookmyung.global.common.code.success.*;
 import com.sookmyung.global.common.exception.*;
 import com.sookmyung.global.common.response.*;
 
