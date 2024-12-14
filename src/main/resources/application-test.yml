@@ -1,0 +1,18 @@
+spring:
+  config:
+    activate:
+      on-profile: test
+    import:
+      - classpath:jpa.yml
+      - classpath:external.yml
+      - classpath:jwt.yml
+  web:
+    resources:
+      add-mappings: false
+    origin:
+      client: localhost
+  datasource:
+    url: jdbc:h2:mem:smcloud-local-db;DATABASE_TO_UPPER=FALSE;mode=mysql
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver

@@ -35,7 +35,6 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-data-redis")
 	implementation("org.springframework.boot:spring-boot-starter-mail")
-	implementation("io.github.cdimascio:java-dotenv:5.2.2")
 	compileOnly("org.projectlombok:lombok")
 	runtimeOnly("com.h2database:h2")
 	runtimeOnly("com.mysql:mysql-connector-j")

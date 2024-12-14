@@ -1,0 +1,38 @@
+spring.config.activate.on-profile:
+  - dev
+  - local
+spring:
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
+  mail:
+    host: ${SMTP_HOST}
+    port: ${SMTP_PORT}
+    username: ${SMTP_USERNAME}
+    password: ${SMTP_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+---
+spring.config.activate.on-profile: test
+spring:
+  data:
+    redis:
+      host: localhost
+      port: 6573
+  mail:
+    host: smtp.example.com
+    port: 123
+    username: test@example.com
+    password: testuser
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true

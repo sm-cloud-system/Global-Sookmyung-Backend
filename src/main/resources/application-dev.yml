@@ -1,0 +1,18 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+    import:
+      - classpath:jpa.yml
+      - classpath:external.yml
+      - classpath:jwt.yml
+  web:
+    resources:
+      add-mappings: false
+    origin:
+      client: ${WEB_ORIGIN}
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: ${DB_DRIVER_CLASS}
