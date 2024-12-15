@@ -63,4 +63,9 @@ public class MemberServiceImpl implements MemberService {
     }
     return ValidateNicknameResponse.of(true);
   }
+
+  public ProfileResponse getProfile(final Long memberId) {
+    Member member = memberRepository.findByIdOrThrow(memberId);
+    return ProfileResponse.of(member.getNickname());
+  }
 }

@@ -10,4 +10,6 @@ public interface MemberService {
   Member findMember(AuthRequest request);
 
   ValidateNicknameResponse validateNickname(String nickname);
+
+  ProfileResponse getProfile(Long memberId);
 }
