@@ -1,5 +1,6 @@
 package com.sookmyung.global.domain.member.controller;
 
+import static com.sookmyung.global.common.code.success.MemberSuccessCode.SUCCESS_GET_PROFILE;
 import static com.sookmyung.global.common.code.success.MemberSuccessCode.SUCCESS_VALIDATE_NICKNAME;
 
 import org.springframework.http.*;
@@ -30,6 +31,7 @@ public class MemberController implements MemberApi {
   @GetMapping("/profile")
   @Override
   public ResponseEntity<ResponseTemplate<?>> getProfile(@AuthMember final Long memberId) {
-    return null;
+    ProfileResponse response = memberService.getProfile(memberId);
+    return ResponseUtil.success(SUCCESS_GET_PROFILE, response);
   }
 }
