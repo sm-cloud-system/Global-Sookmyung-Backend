@@ -6,6 +6,7 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import com.sookmyung.global.common.response.*;
+import com.sookmyung.global.common.security.*;
 import com.sookmyung.global.common.util.*;
 import com.sookmyung.global.domain.member.dto.response.*;
 import com.sookmyung.global.domain.member.service.*;
@@ -24,5 +25,11 @@ public class MemberController implements MemberApi {
       @RequestParam("nickname") final String nickname) {
     ValidateNicknameResponse response = memberService.validateNickname(nickname);
     return ResponseUtil.success(SUCCESS_VALIDATE_NICKNAME, response);
+  }
+
+  @GetMapping("/profile")
+  @Override
+  public ResponseEntity<ResponseTemplate<?>> getProfile(@AuthMember final Long memberId) {
+    return null;
   }
 }
