@@ -45,6 +45,12 @@ public final class ResponseUtil {
         .body(ResponseTemplate.success(code, data));
   }
 
+  public static ResponseEntity<ResponseTemplate> success(SuccessCode code, HttpHeaders headers) {
+    return ResponseEntity.status(code.status())
+        .headers(headers)
+        .body(ResponseTemplate.success(code));
+  }
+
   public static ResponseEntity error(ExceptionCode code) {
     return ResponseEntity.status(code.status()).body(ResponseTemplate.error(code));
   }
