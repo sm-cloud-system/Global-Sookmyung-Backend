@@ -43,4 +43,11 @@ public class CommentController implements CommentApi {
     headers.setLocation(location);
     return ResponseUtil.success(SUCCESS_CREATE_COMMENT, headers);
   }
+
+  @GetMapping("/posts/{postId}")
+  @Override
+  public ResponseEntity<ResponseTemplate<?>> getComments(
+      @AuthMember Long memberId, @PathVariable("postId") Long postId) {
+    return null;
+  }
 }
