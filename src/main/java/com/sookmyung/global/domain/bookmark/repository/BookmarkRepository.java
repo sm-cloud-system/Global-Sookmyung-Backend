@@ -9,4 +9,8 @@ import com.sookmyung.global.domain.post.entity.*;
 
 public interface BookmarkRepository extends JpaRepository<Bookmark, Long> {
   void deleteByMemberAndPost(Member member, Post post);
+
+  boolean existsLikeByMemberAndPost(Member member, Post post);
+
+  int countByPost(Post post);
 }
