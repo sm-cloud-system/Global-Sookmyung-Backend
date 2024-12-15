@@ -3,6 +3,7 @@ package com.sookmyung.global.domain.post.service;
 import static com.sookmyung.global.common.code.fail.PostExceptionCode.INVALID_CREATE_POST_REQUEST;
 
 import org.springframework.stereotype.*;
+import org.springframework.transaction.annotation.*;
 
 import com.sookmyung.global.common.enums.*;
 import com.sookmyung.global.common.exception.*;
@@ -16,10 +17,12 @@ import lombok.*;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class PostServiceImpl implements PostService {
   private final PostRepository postRepository;
   private final MemberRepository memberRepository;
 
+  @Transactional
   @Override
   public Long createPost(final Long memberId, CreatePostRequest request) {
     final Member member = memberRepository.findByIdOrThrow(memberId);
