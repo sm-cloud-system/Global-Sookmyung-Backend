@@ -9,6 +9,6 @@ public final class SecurityConstant {
   public static final String[] AUTH_WHITELIST_WILDCARD = {
     "/webjars/**", "/css/**", "/images/**", "/js/**", "/h2-console/**",
   };
-  public static final String[] AUTH_WHITELIST_WILDCARD_ONLY_GET = {"/posts/**", "/comment/**"};
+  public static final String[] AUTH_WHITELIST_WILDCARD_ONLY_GET = {"/posts/**", "/comments/**"};
   public static final String[] AUTH_WHITELIST_FOR_GUEST = {"/auth/sign-up"};
 }

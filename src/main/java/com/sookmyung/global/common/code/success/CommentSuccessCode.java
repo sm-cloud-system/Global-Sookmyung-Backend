@@ -7,6 +7,7 @@ import lombok.*;
 @Getter
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public enum CommentSuccessCode implements SuccessCode {
+  SUCCESS_GET_COMMENTS(HttpStatus.OK, "댓글 리스트 조회에 성공했습니다"),
   SUCCESS_CREATE_COMMENT(HttpStatus.CREATED, "댓글 생성에 성공했습니다");
 
   private final HttpStatus status;
