@@ -1,6 +1,7 @@
 package com.sookmyung.global.domain.member.repository;
 
 import static com.sookmyung.global.common.code.fail.AuthExceptionCode.INVALID_AUTH_REQUEST;
+import static com.sookmyung.global.common.code.fail.MemberExceptionCode.NOT_FOUND_MEMBER;
 
 import java.util.*;
 
@@ -17,4 +18,8 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
   }
 
   Optional<Member> findByNickname(String nickname);
+
+  default Member findByIdOrThrow(Long memberId) {
+    return findById(memberId).orElseThrow(() -> new MemberException(NOT_FOUND_MEMBER));
+  }
 }
