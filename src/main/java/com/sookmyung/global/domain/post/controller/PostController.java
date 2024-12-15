@@ -1,6 +1,7 @@
 package com.sookmyung.global.domain.post.controller;
 
 import static com.sookmyung.global.common.code.success.PostSuccessCode.SUCCESS_CREATE_POST;
+import static com.sookmyung.global.common.code.success.PostSuccessCode.SUCCESS_GET_POST;
 
 import java.net.*;
 
@@ -13,7 +14,8 @@ import org.springframework.web.servlet.support.*;
 import com.sookmyung.global.common.response.*;
 import com.sookmyung.global.common.security.*;
 import com.sookmyung.global.common.util.*;
-import com.sookmyung.global.domain.post.dto.*;
+import com.sookmyung.global.domain.post.dto.request.*;
+import com.sookmyung.global.domain.post.dto.response.*;
 import com.sookmyung.global.domain.post.service.*;
 
 import lombok.*;
@@ -40,5 +42,13 @@ public class PostController implements PostApi {
 
     headers.setLocation(location);
     return ResponseUtil.success(SUCCESS_CREATE_POST, headers);
+  }
+
+  @GetMapping("/{postId}")
+  @Override
+  public ResponseEntity<ResponseTemplate<?>> getPost(
+      @AuthMember Long memberId, @PathVariable("postId") Long postId) {
+    PostResponse response = postService.getPost(memberId, postId);
+    return ResponseUtil.success(SUCCESS_GET_POST, response);
   }
 }
