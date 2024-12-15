@@ -2,6 +2,7 @@ package com.sookmyung.global.domain.post.controller;
 
 import static com.sookmyung.global.common.code.success.PostSuccessCode.SUCCESS_CREATE_POST;
 import static com.sookmyung.global.common.code.success.PostSuccessCode.SUCCESS_GET_POST;
+import static com.sookmyung.global.common.code.success.PostSuccessCode.SUCCESS_GET_POSTS;
 import static com.sookmyung.global.common.code.success.PostSuccessCode.SUCCESS_GET_POST_BY_SEARCHING;
 
 import java.net.*;
@@ -66,6 +67,7 @@ public class PostController implements PostApi {
   @GetMapping
   @Override
   public ResponseEntity<ResponseTemplate<?>> getPosts(@RequestParam("postType") PostType postType) {
-    return null;
+    List<PostsResponse> response = postService.getPosts(postType);
+    return ResponseUtil.success(SUCCESS_GET_POSTS, response);
   }
 }
