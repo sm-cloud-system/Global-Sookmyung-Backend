@@ -42,7 +42,7 @@ public class CommentServiceImpl implements CommentService {
     return comments.stream()
         .map(
             comment -> {
-              boolean isByComment = memberId.equals(comment.getMember().getId());
+              boolean isByComment = Objects.equals(memberId, comment.getMember().getId());
               return CommentsResponse.of(comment, isByComment);
             })
         .toList();
