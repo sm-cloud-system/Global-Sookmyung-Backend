@@ -22,7 +22,7 @@ public class EmailServiceImpl implements EmailService {
   private String fromEmail;
 
   private final JavaMailSender mailSender;
-  private static final String SUBJECT_STRING_TEMPLATE = "[Global Sookmyung] 메일 인증 안내";
+  private static final String SUBJECT_STRING_TEMPLATE = "[GLOBAL SOOKMYUNG] 메일 인증 안내";
   private static final String CONTENT_TEMPLATE = "인증코드는 %s 입니다.";
 
   @Override
@@ -37,9 +37,7 @@ public class EmailServiceImpl implements EmailService {
       messageHelper.setFrom(fromEmail);
       messageHelper.setSubject(SUBJECT_STRING_TEMPLATE);
       messageHelper.setText(content, true);
-
       mailSender.send(mimeMessage);
-
     } catch (RuntimeException | MessagingException e) {
       log.error("이메일 전송 오류: " + e.getMessage());
       throw new CustomException(EXTERNAL_SERVER_ERROR);
