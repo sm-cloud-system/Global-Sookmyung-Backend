@@ -10,6 +10,7 @@ import lombok.*;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class Comment extends BaseTime {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,4 +26,11 @@ public class Comment extends BaseTime {
 
   @Column(nullable = false)
   private String content;
+
+  @Builder
+  private Comment(Member member, Post post, String content) {
+    this.member = member;
+    this.post = post;
+    this.content = content;
+  }
 }
