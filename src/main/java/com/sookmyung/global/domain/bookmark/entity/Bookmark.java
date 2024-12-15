@@ -11,6 +11,7 @@ import lombok.*;
 @Entity
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"member_id", "post_id"})})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class Bookmark extends BaseTime {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,4 +24,10 @@ public class Bookmark extends BaseTime {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "post_id", nullable = false)
   private Post post;
+
+  @Builder
+  private Bookmark(Member member, Post post) {
+    this.member = member;
+    this.post = post;
+  }
 }
