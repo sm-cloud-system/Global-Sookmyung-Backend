@@ -2,12 +2,15 @@ package com.sookmyung.global.domain.post.service;
 
 import static com.sookmyung.global.common.code.fail.PostExceptionCode.INVALID_CREATE_POST_REQUEST;
 
+import java.util.*;
+
 import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.*;
 
 import com.sookmyung.global.common.enums.*;
 import com.sookmyung.global.common.exception.*;
 import com.sookmyung.global.domain.bookmark.repository.*;
+import com.sookmyung.global.domain.comment.repository.*;
 import com.sookmyung.global.domain.like.repository.*;
 import com.sookmyung.global.domain.member.entity.*;
 import com.sookmyung.global.domain.member.repository.*;
@@ -26,6 +29,7 @@ public class PostServiceImpl implements PostService {
   private final MemberRepository memberRepository;
   private final LikeRepository likeRepository;
   private final BookmarkRepository bookmarkRepository;
+  private final CommentRepository commentRepository;
 
   @Transactional
   @Override
@@ -62,5 +66,18 @@ public class PostServiceImpl implements PostService {
     int bookmarkCount = bookmarkRepository.countByPost(post);
 
     return PostResponse.of(isMyPost, post, isLiked, likeCount, isBookmarked, bookmarkCount);
+  }
+
+  @Override
+  public List<PostsBySearchingResponse> getPostsBySearching(final String searchWord) {
+    final List<Post> postsBySearchWord = postRepository.findAllBySearchWord(searchWord);
+    return postsBySearchWord.stream()
+        .map(
+            post -> {
+              int commentCount = commentRepository.countByPost(post);
+              int likeCount = likeRepository.countByPost(post);
+              return PostsBySearchingResponse.of(post, commentCount, likeCount);
+            })
+        .toList();
   }
 }
