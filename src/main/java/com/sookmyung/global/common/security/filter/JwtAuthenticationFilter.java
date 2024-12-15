@@ -1,7 +1,7 @@
 package com.sookmyung.global.common.security.filter;
 
-import static com.sookmyung.global.common.config.SecurityConfig.AUTH_WHITELIST;
-import static com.sookmyung.global.common.config.SecurityConfig.AUTH_WHITELIST_WILDCARD;
+import static com.sookmyung.global.common.security.SecurityConstant.AUTH_WHITELIST;
+import static com.sookmyung.global.common.security.SecurityConstant.AUTH_WHITELIST_WILDCARD;
 
 import java.io.*;
 import java.util.*;

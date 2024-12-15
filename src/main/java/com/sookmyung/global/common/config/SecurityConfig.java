@@ -1,5 +1,9 @@
 package com.sookmyung.global.common.config;
 
+import static com.sookmyung.global.common.security.SecurityConstant.AUTH_WHITELIST;
+import static com.sookmyung.global.common.security.SecurityConstant.AUTH_WHITELIST_FOR_GUEST;
+import static com.sookmyung.global.common.security.SecurityConstant.AUTH_WHITELIST_WILDCARD;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,20 +28,6 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-
-  public static final String[] AUTH_WHITELIST = {
-    "/",
-    "/error",
-    "/favicon.ico",
-    "/auth/issue/code",
-    "/auth/verify/email",
-    "/member/validate-nickname"
-  };
-
-  public static final String[] AUTH_WHITELIST_WILDCARD = {
-    "/webjars/**", "/css/**", "/images/**", "/js/**", "/h2-console/**",
-  };
-
   @Value("${spring.web.origin.client}")
   private String clientOrigin;
 
@@ -76,7 +66,7 @@ public class SecurityConfig {
             auth -> {
               auth.requestMatchers(AUTH_WHITELIST).permitAll();
               auth.requestMatchers(AUTH_WHITELIST_WILDCARD).permitAll();
-              auth.requestMatchers("/auth/sign-up").hasAuthority("GUEST");
+              auth.requestMatchers(AUTH_WHITELIST_FOR_GUEST).hasAuthority("GUEST");
               auth.anyRequest().hasAnyAuthority("SOOKMYUNG_STUDENT", "INTERNATIONAL_STUDENT");
             })
         .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
