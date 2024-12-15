@@ -6,4 +6,6 @@ import com.sookmyung.global.common.response.*;
 
 public interface MemberApi {
   ResponseEntity<ResponseTemplate<?>> validateNickname(String name);
+
+  ResponseEntity<ResponseTemplate<?>> getProfile(Long memberId);
 }
