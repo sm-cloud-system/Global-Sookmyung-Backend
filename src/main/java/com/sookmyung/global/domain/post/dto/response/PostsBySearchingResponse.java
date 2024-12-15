@@ -6,7 +6,7 @@ import com.sookmyung.global.domain.post.entity.*;
 
 public record PostsBySearchingResponse(
     Long postId,
-    String postType,
+    String postTypeName,
     String title,
     int commentCount,
     String createdAt,
@@ -15,7 +15,7 @@ public record PostsBySearchingResponse(
   public static PostsBySearchingResponse of(Post post, int commentCount, int likeCount) {
     return new PostsBySearchingResponse(
         post.getId(),
-        post.getPostType().name(),
+        post.getPostType().getBoard(),
         post.getTitle(),
         commentCount,
         post.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy.MM.dd")),
