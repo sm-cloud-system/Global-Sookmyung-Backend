@@ -2,7 +2,7 @@ name: Glabal Sookmyung main CI
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: [ "dev" ]
 
 jobs:
   build:
