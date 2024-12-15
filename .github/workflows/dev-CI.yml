@@ -1,4 +1,4 @@
-name: Glabal Sookmyung main CI
+name: GLOBAL SOOKMYUNG dev CI
 
 on:
   pull_request:
