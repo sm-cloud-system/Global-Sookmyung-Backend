@@ -2,6 +2,7 @@ package com.sookmyung.global.common.security.filter;
 
 import static com.sookmyung.global.common.security.SecurityConstant.AUTH_WHITELIST;
 import static com.sookmyung.global.common.security.SecurityConstant.AUTH_WHITELIST_WILDCARD;
+import static com.sookmyung.global.common.security.SecurityConstant.AUTH_WHITELIST_WILDCARD_ONLY_GET;
 
 import java.io.*;
 import java.util.*;
@@ -10,6 +11,7 @@ import java.util.stream.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
+import org.springframework.http.*;
 import org.springframework.security.core.*;
 import org.springframework.security.core.authority.*;
 import org.springframework.security.core.context.*;
@@ -39,10 +41,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
   protected void doFilterInternal(
       HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
       throws ServletException, IOException {
-
     String requestUri = request.getRequestURI();
 
-    if (isWhitelisted(requestUri)) {
+    if (isWhitelisted(requestUri) || isWhiteListedOnlyGet(request.getMethod(), requestUri)) {
       filterChain.doFilter(request, response);
       return;
     }
@@ -52,6 +53,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
   private boolean isWhitelisted(String requestUri) {
     return Arrays.asList(AUTH_WHITELIST).contains(requestUri)
         || Arrays.stream(AUTH_WHITELIST_WILDCARD)
+            .anyMatch(
+                whiteUrl ->
+                    requestUri.startsWith(
+                        whiteUrl.substring(
+                            START_WILDCARD_INDEX, whiteUrl.length() - END_WILDCARD_INDEX)));
+  }
+
+  private boolean isWhiteListedOnlyGet(String method, String requestUri) {
+    return method.equals(HttpMethod.GET.name())
+        && Arrays.stream(AUTH_WHITELIST_WILDCARD_ONLY_GET)
             .anyMatch(
                 whiteUrl ->
                     requestUri.startsWith(

@@ -3,6 +3,7 @@ package com.sookmyung.global.common.config;
 import static com.sookmyung.global.common.security.SecurityConstant.AUTH_WHITELIST;
 import static com.sookmyung.global.common.security.SecurityConstant.AUTH_WHITELIST_FOR_GUEST;
 import static com.sookmyung.global.common.security.SecurityConstant.AUTH_WHITELIST_WILDCARD;
+import static com.sookmyung.global.common.security.SecurityConstant.AUTH_WHITELIST_WILDCARD_ONLY_GET;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -66,6 +67,7 @@ public class SecurityConfig {
             auth -> {
               auth.requestMatchers(AUTH_WHITELIST).permitAll();
               auth.requestMatchers(AUTH_WHITELIST_WILDCARD).permitAll();
+              auth.requestMatchers(HttpMethod.GET, AUTH_WHITELIST_WILDCARD_ONLY_GET).permitAll();
               auth.requestMatchers(AUTH_WHITELIST_FOR_GUEST).hasAuthority("GUEST");
               auth.anyRequest().hasAnyAuthority("SOOKMYUNG_STUDENT", "INTERNATIONAL_STUDENT");
             })
