@@ -23,7 +23,8 @@ public class EmailServiceImpl implements EmailService {
 
   private final JavaMailSender mailSender;
   private static final String SUBJECT_STRING_TEMPLATE = "[GLOBAL SOOKMYUNG] 메일 인증 안내";
-  private static final String CONTENT_TEMPLATE = "인증코드는 %s 입니다.";
+  private static final String CONTENT_TEMPLATE =
+      "<div style='font-size: 20px;'>인증코드는 <b>%s</b> 입니다.</div>";
 
   @Override
   public void sendEmailVerificationCode(String email, String code) {
