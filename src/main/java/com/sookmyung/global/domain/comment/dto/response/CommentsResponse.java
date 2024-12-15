@@ -4,10 +4,10 @@ import java.time.format.*;
 
 import com.sookmyung.global.domain.comment.entity.*;
 
-public record CommentResponse(
+public record CommentsResponse(
     Long commentId, String author, String content, String createdAt, Boolean isMyComment) {
-  public static CommentResponse of(Comment comment, Boolean isMyComment) {
-    return new CommentResponse(
+  public static CommentsResponse of(Comment comment, Boolean isMyComment) {
+    return new CommentsResponse(
         comment.getId(),
         comment.getMember().getNickname(),
         comment.getContent(),

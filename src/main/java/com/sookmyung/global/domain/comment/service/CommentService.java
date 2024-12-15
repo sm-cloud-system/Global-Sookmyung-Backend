@@ -8,5 +8,5 @@ import com.sookmyung.global.domain.comment.dto.response.*;
 public interface CommentService {
   Long createComment(Long memberId, Long postId, CreateCommentRequest request);
 
-  List<CommentResponse> getComments(Long memberId, Long postId);
+  List<CommentsResponse> getComments(Long memberId, Long postId);
 }

@@ -11,7 +11,6 @@ import com.sookmyung.global.domain.comment.entity.*;
 import com.sookmyung.global.domain.comment.repository.*;
 import com.sookmyung.global.domain.member.entity.*;
 import com.sookmyung.global.domain.member.repository.*;
-import com.sookmyung.global.domain.post.dto.response.*;
 import com.sookmyung.global.domain.post.entity.*;
 import com.sookmyung.global.domain.post.repository.*;
 
@@ -37,14 +36,14 @@ public class CommentServiceImpl implements CommentService {
   }
 
   @Override
-  public List<CommentResponse> getComments(final Long memberId, final Long postId) {
+  public List<CommentsResponse> getComments(final Long memberId, final Long postId) {
     Post post = postRepository.findByIdOrThrow(postId);
     final List<Comment> comments = commentRepository.findAllByPost(post);
     return comments.stream()
         .map(
             comment -> {
               boolean isByComment = memberId.equals(comment.getMember().getId());
-              return CommentResponse.of(comment, isByComment);
+              return CommentsResponse.of(comment, isByComment);
             })
         .toList();
   }
