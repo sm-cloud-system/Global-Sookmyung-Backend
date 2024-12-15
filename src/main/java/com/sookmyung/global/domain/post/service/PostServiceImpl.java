@@ -99,4 +99,17 @@ public class PostServiceImpl implements PostService {
             })
         .toList();
   }
+
+  @Override
+  public List<PostsResponse> getPosts(final PostType postType) {
+    final List<Post> posts = postRepository.findAllByPostTypeOrderByCreatedAtDesc(postType);
+    return posts.stream()
+        .map(
+            post -> {
+              int commentCount = commentRepository.countByPost(post);
+              int likeCount = likeRepository.countByPost(post);
+              return PostsResponse.of(post, commentCount, likeCount);
+            })
+        .toList();
+  }
 }
