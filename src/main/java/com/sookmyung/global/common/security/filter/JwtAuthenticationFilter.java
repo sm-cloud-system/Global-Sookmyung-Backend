@@ -43,16 +43,21 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
       throws ServletException, IOException {
     String requestUri = request.getRequestURI();
 
-    if (isWhitelisted(requestUri) || isWhiteListedOnlyGet(request.getMethod(), requestUri)) {
+    if (isWhiteListedOnlyGet(request.getMethod(), requestUri)) {
+      handleWhiteListedOnlyGet(request, response, filterChain);
+      return;
+    }
+
+    if (isWhitelisted(requestUri)) {
       filterChain.doFilter(request, response);
       return;
     }
     handleTokenAuthentication(request, response, filterChain);
   }
 
-  private boolean isWhitelisted(String requestUri) {
-    return Arrays.asList(AUTH_WHITELIST).contains(requestUri)
-        || Arrays.stream(AUTH_WHITELIST_WILDCARD)
+  private boolean isWhiteListedOnlyGet(String method, String requestUri) {
+    return method.equals(HttpMethod.GET.name())
+        && Arrays.stream(AUTH_WHITELIST_WILDCARD_ONLY_GET)
             .anyMatch(
                 whiteUrl ->
                     requestUri.startsWith(
@@ -60,9 +65,26 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                             START_WILDCARD_INDEX, whiteUrl.length() - END_WILDCARD_INDEX)));
   }
 
-  private boolean isWhiteListedOnlyGet(String method, String requestUri) {
-    return method.equals(HttpMethod.GET.name())
-        && Arrays.stream(AUTH_WHITELIST_WILDCARD_ONLY_GET)
+  private void handleWhiteListedOnlyGet(
+      HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+      throws IOException, ServletException {
+    try {
+      authenticateRequest(request);
+    } catch (AuthException e) {
+      SecurityContextHolder.getContext().setAuthentication(createAnonymousAuthentication());
+    }
+    filterChain.doFilter(request, response);
+  }
+
+  private MemberAuthentication createAnonymousAuthentication() {
+    Collection<? extends GrantedAuthority> authorities =
+        List.of(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
+    return new MemberAuthentication("anonymousUser", null, authorities); // 익명 유저 생성
+  }
+
+  private boolean isWhitelisted(String requestUri) {
+    return Arrays.asList(AUTH_WHITELIST).contains(requestUri)
+        || Arrays.stream(AUTH_WHITELIST_WILDCARD)
             .anyMatch(
                 whiteUrl ->
                     requestUri.startsWith(
