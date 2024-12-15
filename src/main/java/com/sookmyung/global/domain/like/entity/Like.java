@@ -25,4 +25,10 @@ public class Like extends BaseTime {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "post_id", nullable = false)
   private Post post;
+
+  @Builder
+  private Like(Member member, Post post) {
+    this.member = member;
+    this.post = post;
+  }
 }
