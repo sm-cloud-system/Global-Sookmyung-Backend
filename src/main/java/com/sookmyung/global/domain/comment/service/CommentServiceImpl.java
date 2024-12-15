@@ -1,13 +1,17 @@
 package com.sookmyung.global.domain.comment.service;
 
+import java.util.*;
+
 import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.*;
 
 import com.sookmyung.global.domain.comment.dto.request.*;
+import com.sookmyung.global.domain.comment.dto.response.*;
 import com.sookmyung.global.domain.comment.entity.*;
 import com.sookmyung.global.domain.comment.repository.*;
 import com.sookmyung.global.domain.member.entity.*;
 import com.sookmyung.global.domain.member.repository.*;
+import com.sookmyung.global.domain.post.dto.response.*;
 import com.sookmyung.global.domain.post.entity.*;
 import com.sookmyung.global.domain.post.repository.*;
 
@@ -30,5 +34,18 @@ public class CommentServiceImpl implements CommentService {
         Comment.builder().member(member).post(post).content(request.content()).build();
     commentRepository.save(comment);
     return comment.getId();
+  }
+
+  @Override
+  public List<CommentResponse> getComments(final Long memberId, final Long postId) {
+    Post post = postRepository.findByIdOrThrow(postId);
+    final List<Comment> comments = commentRepository.findAllByPost(post);
+    return comments.stream()
+        .map(
+            comment -> {
+              boolean isByComment = memberId.equals(comment.getMember().getId());
+              return CommentResponse.of(comment, isByComment);
+            })
+        .toList();
   }
 }
