@@ -2,8 +2,10 @@ package com.sookmyung.global.domain.post.controller;
 
 import static com.sookmyung.global.common.code.success.PostSuccessCode.SUCCESS_CREATE_POST;
 import static com.sookmyung.global.common.code.success.PostSuccessCode.SUCCESS_GET_POST;
+import static com.sookmyung.global.common.code.success.PostSuccessCode.SUCCESS_GET_POST_BY_SEARCHING;
 
 import java.net.*;
+import java.util.*;
 
 import jakarta.validation.*;
 
@@ -56,6 +58,7 @@ public class PostController implements PostApi {
   @Override
   public ResponseEntity<ResponseTemplate<?>> getPostsBySearching(
       @RequestParam("searchWord") String searchWord) {
-    return null;
+    List<PostsBySearchingResponse> response = postService.getPostsBySearching(searchWord);
+    return ResponseUtil.success(SUCCESS_GET_POST_BY_SEARCHING, response);
   }
 }
