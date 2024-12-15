@@ -13,6 +13,7 @@ import lombok.*;
     name = "Likes",
     uniqueConstraints = {@UniqueConstraint(columnNames = {"member_id", "post_id"})})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class Like extends BaseTime {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
