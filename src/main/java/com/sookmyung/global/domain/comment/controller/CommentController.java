@@ -1,8 +1,10 @@
 package com.sookmyung.global.domain.comment.controller;
 
 import static com.sookmyung.global.common.code.success.CommentSuccessCode.SUCCESS_CREATE_COMMENT;
+import static com.sookmyung.global.common.code.success.CommentSuccessCode.SUCCESS_GET_COMMENTS;
 
 import java.net.*;
+import java.util.*;
 
 import jakarta.validation.*;
 
@@ -14,6 +16,7 @@ import com.sookmyung.global.common.response.*;
 import com.sookmyung.global.common.security.*;
 import com.sookmyung.global.common.util.*;
 import com.sookmyung.global.domain.comment.dto.request.*;
+import com.sookmyung.global.domain.comment.dto.response.*;
 import com.sookmyung.global.domain.comment.service.*;
 
 import lombok.*;
@@ -48,6 +51,7 @@ public class CommentController implements CommentApi {
   @Override
   public ResponseEntity<ResponseTemplate<?>> getComments(
       @AuthMember Long memberId, @PathVariable("postId") Long postId) {
-    return null;
+    List<CommentsResponse> response = commentService.getComments(memberId, postId);
+    return ResponseUtil.success(SUCCESS_GET_COMMENTS, response);
   }
 }
