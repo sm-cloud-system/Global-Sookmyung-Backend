@@ -11,4 +11,6 @@ public interface PostApi {
   ResponseEntity<ResponseTemplate> createPost(Long memberId, @Valid CreatePostRequest request);
 
   ResponseEntity<ResponseTemplate<?>> getPost(Long memberId, Long postId);
+
+  ResponseEntity<ResponseTemplate<?>> getPostsBySearching(String searchWord);
 }

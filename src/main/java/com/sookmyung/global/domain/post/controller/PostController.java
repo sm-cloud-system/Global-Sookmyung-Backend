@@ -51,4 +51,11 @@ public class PostController implements PostApi {
     PostResponse response = postService.getPost(memberId, postId);
     return ResponseUtil.success(SUCCESS_GET_POST, response);
   }
+
+  @GetMapping("/search")
+  @Override
+  public ResponseEntity<ResponseTemplate<?>> getPostsBySearching(
+      @RequestParam("searchWord") String searchWord) {
+    return null;
+  }
 }
