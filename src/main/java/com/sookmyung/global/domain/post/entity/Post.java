@@ -10,6 +10,7 @@ import lombok.*;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class Post extends BaseTime {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,4 +29,12 @@ public class Post extends BaseTime {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "author_id", nullable = false)
   private Member author;
+
+  @Builder
+  private Post(String title, PostType postType, String content, Member author) {
+    this.title = title;
+    this.postType = postType;
+    this.content = content;
+    this.author = author;
+  }
 }
