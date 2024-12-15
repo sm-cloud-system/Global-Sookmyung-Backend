@@ -11,8 +11,11 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.*;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import com.sookmyung.global.common.security.filter.*;
 
 import lombok.RequiredArgsConstructor;
 
@@ -36,6 +39,9 @@ public class SecurityConfig {
 
   @Value("${spring.web.origin.client}")
   private String clientOrigin;
+
+  private final JwtAuthenticationFilter jwtAuthenticationFilter;
+  private final JwtExceptionFilter jwtExceptionFilter;
 
   @Bean
   public WebMvcConfigurer corsConfigurer() {
@@ -72,12 +78,15 @@ public class SecurityConfig {
                 headerConfig.frameOptions(frameOptionsConfig -> frameOptionsConfig.disable()));
 
     http.authorizeHttpRequests(
-        auth -> {
-          auth.requestMatchers(AUTH_WHITELIST).permitAll();
-          auth.requestMatchers(AUTH_WHITELIST_WILDCARD).permitAll();
-          auth.requestMatchers("/auth/sign-up").hasAuthority("GUEST");
-          auth.anyRequest().hasAnyAuthority("SOOKMYUNG_STUDENT", "INTERNATIONAL_STUDENT");
-        });
+            auth -> {
+              auth.requestMatchers(AUTH_WHITELIST).permitAll();
+              auth.requestMatchers(AUTH_WHITELIST_WILDCARD).permitAll();
+              auth.requestMatchers("/auth/sign-up").hasAuthority("GUEST");
+              auth.anyRequest().hasAnyAuthority("SOOKMYUNG_STUDENT", "INTERNATIONAL_STUDENT");
+            })
+        .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+        .addFilterBefore(jwtExceptionFilter, JwtAuthenticationFilter.class);
+    ;
 
     return http.build();
   }
