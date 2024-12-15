@@ -57,6 +57,25 @@ public class PostServiceImpl implements PostService {
 
   @Override
   public PostResponse getPost(final Long memberId, final Long postId) {
+    boolean isNotServiceMember = memberId == null;
+    if (isNotServiceMember) {
+      return getPostForNotServiceMember(postId);
+    }
+    return getPostForServiceMember(memberId, postId);
+  }
+
+  private PostResponse getPostForNotServiceMember(final Long postId) {
+    Post post = postRepository.findByIdOrThrow(postId);
+    boolean isMyPost = false;
+    boolean isLiked = false;
+    int likeCount = likeRepository.countByPost(post);
+    boolean isBookmarked = false;
+    int bookmarkCount = bookmarkRepository.countByPost(post);
+
+    return PostResponse.of(isMyPost, post, isLiked, likeCount, isBookmarked, bookmarkCount);
+  }
+
+  private PostResponse getPostForServiceMember(final Long memberId, final Long postId) {
     Member member = memberRepository.findByIdOrThrow(memberId);
     Post post = postRepository.findByIdOrThrow(postId);
     boolean isMyPost = memberId.equals(post.getAuthor().getId());
