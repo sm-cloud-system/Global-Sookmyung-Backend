@@ -16,6 +16,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
   }
 
   @Query(
-      "select p from Post p where p.title like :searchWord or p.content like :searchWord order by p.createdAt desc")
+      "select p from Post p where p.title like %:searchWord% or p.content like %:searchWord% order by p.createdAt desc")
   List<Post> findAllBySearchWord(@Param("searchWord") String searchWord);
 }
