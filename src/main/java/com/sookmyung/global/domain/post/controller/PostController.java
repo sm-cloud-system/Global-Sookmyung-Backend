@@ -13,6 +13,7 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.*;
 
+import com.sookmyung.global.common.enums.*;
 import com.sookmyung.global.common.response.*;
 import com.sookmyung.global.common.security.*;
 import com.sookmyung.global.common.util.*;
@@ -60,5 +61,11 @@ public class PostController implements PostApi {
       @RequestParam("searchWord") String searchWord) {
     List<PostsBySearchingResponse> response = postService.getPostsBySearching(searchWord);
     return ResponseUtil.success(SUCCESS_GET_POST_BY_SEARCHING, response);
+  }
+
+  @GetMapping
+  @Override
+  public ResponseEntity<ResponseTemplate<?>> getPosts(@RequestParam("postType") PostType postType) {
+    return null;
   }
 }
