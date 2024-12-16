@@ -1,6 +1,6 @@
 package com.sookmyung.global.external.jwt.service;
 
-import static com.sookmyung.global.common.code.fail.AuthExceptionCode.INVALID_REQUEST_LOGIN;
+import static com.sookmyung.global.common.code.fail.AuthExceptionCode.INVALID_AUTH_REQUEST;
 import static com.sookmyung.global.common.code.fail.AuthExceptionCode.INVALID_TOKEN;
 import static com.sookmyung.global.common.code.fail.AuthExceptionCode.INVALID_TOKEN_HEADER;
 
@@ -58,7 +58,7 @@ public class JwtServiceImpl implements JwtService {
       return IssueTokenResponse.of(accessToken, refreshToken);
     }
 
-    throw new AuthException(INVALID_REQUEST_LOGIN);
+    throw new AuthException(INVALID_AUTH_REQUEST);
   }
 
   @Override
