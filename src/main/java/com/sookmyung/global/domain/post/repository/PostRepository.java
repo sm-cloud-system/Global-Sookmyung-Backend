@@ -24,4 +24,8 @@ public interface PostRepository extends JpaRepository<Post, Long> {
   List<Post> findAllByPostTypeOrderByCreatedAtDesc(PostType postType);
 
   List<Post> findAllByAuthorOrderByCreatedAtDesc(Member member);
+
+  @Query(
+      "select p from Post p join fetch Bookmark b on p = b.post where b.member = :member order by b.createdAt desc ")
+  List<Post> findAllByMemberBookmarked(Member member);
 }
