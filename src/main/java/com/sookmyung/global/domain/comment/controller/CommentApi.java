@@ -10,4 +10,6 @@ import com.sookmyung.global.domain.comment.dto.request.*;
 public interface CommentApi {
   ResponseEntity<ResponseTemplate> createComment(
       Long memberId, Long postId, @Valid CreateCommentRequest request);
+
+  ResponseEntity<ResponseTemplate<?>> getComments(Long memberId, Long postId);
 }

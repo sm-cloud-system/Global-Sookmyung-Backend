@@ -1,8 +1,8 @@
-name: Glabal Sookmyung main CI
+name: GLOBAL SOOKMYUNG dev CI
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: [ "dev" ]
 
 jobs:
   build:
