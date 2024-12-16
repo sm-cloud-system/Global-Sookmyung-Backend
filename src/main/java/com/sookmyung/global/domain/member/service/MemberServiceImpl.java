@@ -45,6 +45,7 @@ public class MemberServiceImpl implements MemberService {
     return newMember;
   }
 
+  @Override
   public Member findMember(AuthRequest request) {
     Member member = memberRepository.findByEmailOrThrow(request.email());
     boolean isNotEqualsPassword =
@@ -56,6 +57,7 @@ public class MemberServiceImpl implements MemberService {
     return member;
   }
 
+  @Override
   public ValidateNicknameResponse validateNickname(final String nickname) {
     Optional<Member> member = memberRepository.findByNickname(nickname);
 
@@ -65,6 +67,7 @@ public class MemberServiceImpl implements MemberService {
     return ValidateNicknameResponse.of(true);
   }
 
+  @Override
   public ProfileResponse getProfile(final Long memberId) {
     Member member = memberRepository.findByIdOrThrow(memberId);
     return ProfileResponse.of(member.getNickname());
