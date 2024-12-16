@@ -34,4 +34,10 @@ public class MemberController implements MemberApi {
     ProfileResponse response = memberService.getProfile(memberId);
     return ResponseUtil.success(SUCCESS_GET_PROFILE, response);
   }
+
+  @GetMapping("/posts")
+  @Override
+  public ResponseEntity<ResponseTemplate<?>> getMemberPosts(@AuthMember final Long memberId) {
+    return null;
+  }
 }

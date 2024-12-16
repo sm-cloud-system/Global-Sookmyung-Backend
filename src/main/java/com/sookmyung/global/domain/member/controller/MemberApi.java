@@ -8,4 +8,6 @@ public interface MemberApi {
   ResponseEntity<ResponseTemplate<?>> validateNickname(String name);
 
   ResponseEntity<ResponseTemplate<?>> getProfile(Long memberId);
+
+  ResponseEntity<ResponseTemplate<?>> getMemberPosts(Long memberId);
 }
