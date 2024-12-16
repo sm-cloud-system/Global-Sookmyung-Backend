@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.*;
 
 import com.sookmyung.global.common.enums.*;
 import com.sookmyung.global.common.exception.*;
+import com.sookmyung.global.domain.member.entity.*;
 import com.sookmyung.global.domain.post.entity.*;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
@@ -21,4 +22,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
   List<Post> findAllBySearchWord(@Param("searchWord") String searchWord);
 
   List<Post> findAllByPostTypeOrderByCreatedAtDesc(PostType postType);
+
+  List<Post> findAllByAuthorOrderByCreatedAtDesc(Member member);
 }
