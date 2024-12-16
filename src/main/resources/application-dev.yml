@@ -9,8 +9,6 @@ spring:
   web:
     resources:
       add-mappings: false
-    origin:
-      client: ${WEB_ORIGIN}
   datasource:
     url: ${DB_URL}
     username: ${DB_USERNAME}
