@@ -47,4 +47,11 @@ public class MemberController implements MemberApi {
     List<PostsResponse> response = postService.getMemberPosts(memberId);
     return ResponseUtil.success(SUCCESS_GET_MEMBER_POSTS, response);
   }
+
+  @GetMapping("/bookmark/posts")
+  @Override
+  public ResponseEntity<ResponseTemplate<?>> getMemberBookmarkedPosts(
+      @AuthMember final Long memberId) {
+    return null;
+  }
 }
