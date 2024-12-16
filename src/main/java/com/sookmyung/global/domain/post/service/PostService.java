@@ -16,4 +16,6 @@ public interface PostService {
   List<PostsResponse> getPosts(PostType postType);
 
   List<PostsResponse> getMemberPosts(Long memberId);
+
+  List<PostsResponse> getMemberBookmarkedPosts(Long memberId);
 }
