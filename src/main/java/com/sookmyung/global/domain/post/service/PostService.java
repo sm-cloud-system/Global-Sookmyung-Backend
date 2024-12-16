@@ -14,4 +14,6 @@ public interface PostService {
   List<PostsBySearchingResponse> getPostsBySearching(String searchWord);
 
   List<PostsResponse> getPosts(PostType postType);
+
+  List<PostsResponse> getMemberPosts(Long memberId);
 }

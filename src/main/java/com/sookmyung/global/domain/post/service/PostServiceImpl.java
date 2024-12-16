@@ -112,4 +112,18 @@ public class PostServiceImpl implements PostService {
             })
         .toList();
   }
+
+  @Override
+  public List<PostsResponse> getMemberPosts(final Long memberId) {
+    Member member = memberRepository.findByIdOrThrow(memberId);
+    final List<Post> posts = postRepository.findAllByAuthorOrderByCreatedAtDesc(member);
+    return posts.stream()
+        .map(
+            post -> {
+              int commentCount = commentRepository.countByPost(post);
+              int likeCount = likeRepository.countByPost(post);
+              return PostsResponse.of(post, commentCount, likeCount);
+            })
+        .toList();
+  }
 }
