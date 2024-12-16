@@ -42,8 +42,7 @@ public class SecurityConfig {
       public void addCorsMappings(CorsRegistry registry) {
         registry
             .addMapping("/**")
-            .allowedOrigins(clientOrigin)
-            .allowedOriginPatterns(clientOrigin)
+            .allowedOrigins("*") // 모든 도메인 허용
             .allowedHeaders("*")
             .allowedMethods(
                 HttpMethod.GET.name(),
