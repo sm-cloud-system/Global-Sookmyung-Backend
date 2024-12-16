@@ -9,7 +9,7 @@ import lombok.*;
 public enum AuthExceptionCode implements ExceptionCode {
   UNAUTHORIZED_TOKEN(HttpStatus.UNAUTHORIZED, "기한이 만료된 토큰입니다."),
   INVALID_TOKEN(HttpStatus.UNAUTHORIZED, "서비스에서 발급되지 않은 토큰입니다."),
-  INVALID_TOKEN_HEADER(HttpStatus.BAD_REQUEST, "토큰 헤더가 존재하지 않습니다."),
+  INVALID_TOKEN_HEADER(HttpStatus.UNAUTHORIZED, "토큰 헤더가 존재하지 않습니다."),
   INVALID_VERIFICATION_CODE(HttpStatus.BAD_REQUEST, "인증번호가 유효하지 않습니다"),
   INVALID_EMAIL_DOMAIN(HttpStatus.BAD_REQUEST, "숙명여자대학교 이메일이 아닙니다"),
   INVALID_AUTH_REQUEST(HttpStatus.BAD_REQUEST, "올바르지 않은 로그인 요청입니다"),
