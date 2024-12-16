@@ -5,7 +5,6 @@ import static com.sookmyung.global.common.security.SecurityConstant.AUTH_WHITELI
 import static com.sookmyung.global.common.security.SecurityConstant.AUTH_WHITELIST_WILDCARD;
 import static com.sookmyung.global.common.security.SecurityConstant.AUTH_WHITELIST_WILDCARD_ONLY_GET;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.*;
@@ -29,9 +28,6 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-  @Value("${spring.web.origin.client}")
-  private String clientOrigin;
-
   private final JwtAuthenticationFilter jwtAuthenticationFilter;
   private final JwtExceptionFilter jwtExceptionFilter;
 
