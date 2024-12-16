@@ -10,4 +10,6 @@ public interface MemberApi {
   ResponseEntity<ResponseTemplate<?>> getProfile(Long memberId);
 
   ResponseEntity<ResponseTemplate<?>> getMemberPosts(Long memberId);
+
+  ResponseEntity<ResponseTemplate<?>> getMemberBookmarkedPosts(Long memberId);
 }
