@@ -1,7 +1,10 @@
 package com.sookmyung.global.domain.member.controller;
 
+import static com.sookmyung.global.common.code.success.MemberSuccessCode.SUCCESS_GET_MEMBER_POSTS;
 import static com.sookmyung.global.common.code.success.MemberSuccessCode.SUCCESS_GET_PROFILE;
 import static com.sookmyung.global.common.code.success.MemberSuccessCode.SUCCESS_VALIDATE_NICKNAME;
+
+import java.util.*;
 
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +14,8 @@ import com.sookmyung.global.common.security.*;
 import com.sookmyung.global.common.util.*;
 import com.sookmyung.global.domain.member.dto.response.*;
 import com.sookmyung.global.domain.member.service.*;
+import com.sookmyung.global.domain.post.dto.response.*;
+import com.sookmyung.global.domain.post.service.*;
 
 import lombok.*;
 
@@ -19,6 +24,7 @@ import lombok.*;
 @RequiredArgsConstructor
 public class MemberController implements MemberApi {
   private final MemberService memberService;
+  private final PostService postService;
 
   @GetMapping("/validate-nickname")
   @Override
@@ -38,6 +44,7 @@ public class MemberController implements MemberApi {
   @GetMapping("/posts")
   @Override
   public ResponseEntity<ResponseTemplate<?>> getMemberPosts(@AuthMember final Long memberId) {
-    return null;
+    List<PostsResponse> response = postService.getMemberPosts(memberId);
+    return ResponseUtil.success(SUCCESS_GET_MEMBER_POSTS, response);
   }
 }
