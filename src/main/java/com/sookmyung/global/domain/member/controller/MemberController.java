@@ -1,5 +1,6 @@
 package com.sookmyung.global.domain.member.controller;
 
+import static com.sookmyung.global.common.code.success.MemberSuccessCode.SUCCESS_GET_MEMBER_BOOKMARKED_POSTS;
 import static com.sookmyung.global.common.code.success.MemberSuccessCode.SUCCESS_GET_MEMBER_POSTS;
 import static com.sookmyung.global.common.code.success.MemberSuccessCode.SUCCESS_GET_PROFILE;
 import static com.sookmyung.global.common.code.success.MemberSuccessCode.SUCCESS_VALIDATE_NICKNAME;
@@ -52,6 +53,7 @@ public class MemberController implements MemberApi {
   @Override
   public ResponseEntity<ResponseTemplate<?>> getMemberBookmarkedPosts(
       @AuthMember final Long memberId) {
-    return null;
+    List<PostsResponse> response = postService.getMemberBookmarkedPosts(memberId);
+    return ResponseUtil.success(SUCCESS_GET_MEMBER_BOOKMARKED_POSTS, response);
   }
 }
