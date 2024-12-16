@@ -1,7 +1,7 @@
 spring:
   config:
     activate:
-      on-profile: local
+      on-profile: dev
     import:
       - classpath:jpa.yml
       - classpath:external.yml
