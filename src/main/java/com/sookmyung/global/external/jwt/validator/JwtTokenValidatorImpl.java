@@ -23,7 +23,7 @@ public class JwtTokenValidatorImpl implements JwtTokenValidator {
   private String secretKey;
 
   private JWTVerifier getVerifier() {
-    return JWT.require(Algorithm.HMAC512(secretKey)).acceptExpiresAt(0).build();
+    return JWT.require(Algorithm.HMAC512(secretKey)).build();
   }
 
   @Override
