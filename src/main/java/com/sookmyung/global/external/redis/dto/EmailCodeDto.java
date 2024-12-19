@@ -8,7 +8,7 @@ import lombok.*;
 
 @Getter
 @NoArgsConstructor
-@RedisHash(value = "refresh", timeToLive = 600)
+@RedisHash(value = "emailCode", timeToLive = 600)
 public class EmailCodeDto {
   @Id @Indexed private String email;
 
